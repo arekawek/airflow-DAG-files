@@ -84,5 +84,14 @@ with DAG(
         bash_command=templated_command,
         params={'my_param': 'Parameter I passed in'},
     )
+    t4 = BashOperator(
+        task_id='test',
+        depends_on_past=False,
+        bash_command="""
+            echo "Tesme"
+        """,
+        params={'no_param': 'noParam'}
+    )
 
+    
     t1 >> [t2, t3]
